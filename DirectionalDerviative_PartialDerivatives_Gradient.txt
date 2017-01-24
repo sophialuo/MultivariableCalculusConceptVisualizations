@@ -1,0 +1,122 @@
+Input: f(x,y) = 9 - x^2 - y^2
+Visualization:  directional derivative, tangent plane, partial derivative with respect to x, partial derivative with respect to y, gradient unit vector at a user-controlled movable point of the given function; visualized in 3D and 2D
+
+f[x_, y_] = 9 - (x^2 + y^2);
+
+(*partial derivatives*)
+fx[x_, y_] = D[f[x, y], x];
+fy[x_, y_] = D[f[x, y], y];
+
+(*gradient and magnitude of the gradient*)
+gradf[x_, y_] = {fx[x, y], fy[x, y]}
+maggradf[x_, y_] = Sqrt[fx[x, y]*fx[x, y] + fy[x, y]*fy[x, y]]
+
+(*unit vector*)
+u[\[Theta]_] = {Cos[\[Theta]], Sin[\[Theta]]} 
+
+{Cos[\[Theta]], Sin[\[Theta]]}
+
+(*parameters needed for the visualization*)
+list = {x, y, z};
+
+Manipulate[
+ GraphicsGrid[{
+   (*the plot*)
+   {Show[
+     Plot3D[f[x, y], {x, -2, 2}, {y, -2, 2}],(*graph*)
+     Graphics3D[{PointSize[0.03], Red, Point[{a, b, f[a, b]}]}],(*point*)
+     ParametricPlot3D[{x, b, f[x, b]}, {x, -3, 3}],(*slice on the x*)
+     	(*x is fixed, y is variable*)
+     ParametricPlot3D[{a, y, f[a, y]}, {y, -3, 3}],(*slice on the y*)
+     	(*y is fixed, x is variable*)
+     Graphics3D[{Thickness[.02], Blue, 
+       Line[{{a, b, f[a, b]}, {a + Cos[\[Theta]], b + Sin[\[Theta]], 
+          f[a, b] + Cos[\[Theta]]*fx[a, b] + 
+           Sin[\[Theta]]*fy[a, b]}}]}], (*directional derivative*)
+     	(***interpretation***)
+     	(*the rate at which z is changing in the direction of the unit vector \
+which changes based on \[Theta]
+     	the slope of the tangent line that is parallel to the unit vector \
+direction at a point on the curve
+     	change in z is the dot product <fx,fy>.u 
+     	the directional derivative: 
+     it's a scalar projection of gradient vector onto u
+     	*)
+     
+     	(***math explanation***)
+     	(*a + dx(amount change in x), b + dy(amount change in y), f[a,b] + 
+     dz(total differential aka amount change in z)
+     	*)
+     ContourPlot3D[{fx[a, b], fy[a, b], -1}.(list - {a, b, f[a, b]}) == 0, {x,
+        a - 5, a + 5}, {y, b - 5, b + 5}, {z, f[a, b] - 5, f[a, b] + 5}, 
+      Mesh -> False],(*tangent plane*)
+     	(***interpretation***)
+     	(*contains the two partial derivatives
+     	linear approximation:line :: tangent plane approximation:surface*)
+     
+     	(***math explanation***)
+     	(*normal vector.position vector \[Equal] 0
+     	normal vector: basically nx cross product ny
+     	nx is <1,0,
+     fx>  (slope of partial derivative because change in z versus x is fx \
+therefore it's <1,0,fx>)
+       ny is <0,1,fy> (same as above but in the y)
+     		cross product is <-fx,-fy,1>
+     	*)
+     ParametricPlot3D[{a + t, b, f[a, b] + t*fx[a, b]}, {t, -3, 3}, 
+      PlotStyle -> {Thick, Red}],(*partial derivative with respect to x*)
+     	(***interpretation***)
+     	(*the rate at which z is changing when y is fixed and x is variable in \
+the unit vector i direction
+     	the slope of the tangent line, parallel to the x axis, 
+     at a point on the curve*)
+     
+     	(***math explanation***)
+     	(*x changing with respect to t, fixed y coordinate, z + 
+     t times fx which is basically like r*t=d*)
+     ParametricPlot3D[{a, b + t, f[a, b] + t*fy[a, b]}, {t, -3, 3}, 
+      PlotStyle -> {Thick, Red}],(*partial derivative with respect to y*)
+     	(***interpretation***)
+     	(*the rate at which z is changing when x is fixed and y is variable in \
+the unit vector j direction
+     	the slope of the tangent line, parallel to the y axis, 
+     at a point on the curve*)
+     
+     	(***math explanation***)
+     	(*fixed x coordinate, y changing with respect to t, z + 
+     t times fy which is basically like r*t=d*)
+     Graphics3D[{Green, Thickness[.02], 
+       Line[{{a, b, f[a, b]}, {a + fx[a, b]/maggradf[a, b], 
+          b + fy[a, b]/maggradf[a, b], 
+          f[a, b] + maggradf[a, b]}}]}](*gradient unit vector*)
+     	(***interpretation***)
+     	(*the direction of the maximum change of the directional derivative \
+(the maximum change in z)
+     	the magnitude of the gradient vector is the maximum value of the \
+directional derivative*)
+     
+     	(***math explanation***)
+     	(*x + partial x (change in x), y + partial y (change in y), z + 
+     magnitude of gradient (change in z)
+     	it's a unit vector because you are normalizing the change, 
+     basically you need to know the change in z in the unit vector direction
+     	*)
+     ]},
+   (*the contour plot*)
+   (*interpretations and math explanations are basically the same as stuff \
+from above except only in 2 dimensions*)
+   {Show[
+     ContourPlot[f[x, y], {x, -3, 3}, {y, -3, 3}],(*graph*)
+     Graphics[{PointSize[0.03], Red, Point[{a, b}]}],(*point*)
+     Graphics[{Blue, 
+       Arrow[{{a, b}, {a + Cos[\[Theta]], 
+          b + Sin[\[Theta]]}}]}],(*directional derivative*)
+     Graphics[{Green, 
+       Arrow[{{a, b}, {a + fx[a, b]/maggradf[a, b], 
+          b + fy[a, b]/maggradf[a, b]}}]}](*gradient unit vector*)
+     ]}
+   }],
+ {a, -3, 3},
+ {b, -3, 3},
+ {\[Theta], -2 Pi, 2 Pi}
+ ]

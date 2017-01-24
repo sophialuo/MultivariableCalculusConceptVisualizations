@@ -1,0 +1,54 @@
+Given equation: x(t) = t, y(t) = t^2, and z(t) = t^3
+Visualization: tangent vector, normal vector, binormal vector, tangent plane, normal plane, binormal plane given a user-controlled movable point on the graphed equation and contour plot
+
+r[t_] = {t, t^2, t^3}
+
+rPrime[t_] = r'[t]
+
+rPrimeMag[t_] = Sqrt[r'[t].r'[t]]
+
+T[t_] = r'[t]/rPrimeMag[t] 
+
+
+
+tPrime[t_] = T'[t]
+
+tPrimeMag[t_] = Sqrt[T'[t].T'[t]]
+
+\[Kappa][t_] = tPrimeMag[t]/rPrimeMag[t]
+
+normal[t_] = tPrime[t]/tPrimeMag[t]
+
+binormal[t_] = Cross[T[t], normal[t]]
+
+list = {x, y, z};
+
+Manipulate[
+ GraphicsGrid[{
+   {Show[
+     ParametricPlot3D[r[t], {t, -50, 50}, Boxed -> False, 
+      AxesOrigin -> {0, 0, 0}, Axes -> True, PlotRange -> {-50, 50}],
+     Graphics3D[{PointSize[0.03], Red, Point[r[q]]}],
+     Graphics3D[{Purple, Arrow[{r[q], r[q] + 20*T[q]}]}],
+     Graphics3D[{Green, Arrow[{r[q], r[q] + 20*normal[q]}]}],
+     Graphics3D[{Blue, Arrow[{r[q], r[q] + 20*binormal[q]}]}],
+     ContourPlot3D[
+      binormal[q].(list - r[q]) == 0, {x, r[q][[1]] - 5, r[q][[1]] + 5}, {y, 
+       r[q][[2]] - 5, r[q][[2]] + 5}, {z, r[q][[3]] - 5, r[q][[3]] + 5}, 
+      ContourStyle -> Blue],
+     ContourPlot3D[
+      normal[q].(list - r[q]) == 0, {x, r[q][[1]] - 5, r[q][[1]] + 5}, {y, 
+       r[q][[2]] - 5, r[q][[2]] + 5}, {z, r[q][[3]] - 5, r[q][[3]] + 5}, 
+      ContourStyle -> Green],
+     ContourPlot3D[
+      T[q].(list - r[q]) == 0, {x, r[q][[1]] - 5, r[q][[1]] + 5}, {y, 
+       r[q][[2]] - 5, r[q][[2]] + 5}, {z, r[q][[3]] - 5, r[q][[3]] + 5}, 
+      ContourStyle -> Purple]
+     ]},
+   {Show[
+     Plot[\[Kappa][t], {t, -3, 3}, PlotRange -> {0, 2}],
+     Graphics[{PointSize[0.03], Red, Point[{q, \[Kappa][q]}]}]
+     ]}
+   }],
+ {q, -3, 3}
+ ]
