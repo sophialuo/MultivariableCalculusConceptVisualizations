@@ -1,0 +1,920 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     37982,        911]
+NotebookOptionsPosition[     37324,        886]
+NotebookOutlinePosition[     37745,        902]
+CellTagsIndexPosition[     37702,        899]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Input: f(x,y) = 9 - x^2 - y^2
+Visualization:  directional derivative, tangent plane, partial derivative \
+with respect to x, partial derivative with respect to y, gradient unit vector \
+at a user-controlled movable point of the given function; visualized in 3D \
+and 2D\
+\>", "Text",
+ CellChangeTimes->{{3.694286912438629*^9, 3.694287033186988*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"f", "[", 
+    RowBox[{"x_", ",", "y_"}], "]"}], "=", 
+   RowBox[{"9", "-", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"x", "^", "2"}], "+", 
+      RowBox[{"y", "^", "2"}]}], ")"}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.621387396967075*^9, 3.6213874164231873`*^9}, 
+   3.622931256323168*^9, {3.6229852306153965`*^9, 3.622985253017036*^9}, {
+   3.622985284232691*^9, 3.6229852895523005`*^9}, {3.6942869180845757`*^9, 
+   3.694286919331586*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"partial", " ", "derivatives"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"fx", "[", 
+      RowBox[{"x_", ",", "y_"}], "]"}], "=", 
+     RowBox[{"D", "[", 
+      RowBox[{
+       RowBox[{"f", "[", 
+        RowBox[{"x", ",", "y"}], "]"}], ",", "x"}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"fy", "[", 
+      RowBox[{"x_", ",", "y_"}], "]"}], "=", 
+     RowBox[{"D", "[", 
+      RowBox[{
+       RowBox[{"f", "[", 
+        RowBox[{"x", ",", "y"}], "]"}], ",", "y"}], "]"}]}], 
+    ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.623088897051712*^9, 3.623088913586738*^9}, {
+  3.694286641879035*^9, 3.6942866498247175`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "gradient", " ", "and", " ", "magnitude", " ", "of", " ", "the", " ", 
+    "gradient"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"gradf", "[", 
+     RowBox[{"x_", ",", "y_"}], "]"}], "=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"fx", "[", 
+       RowBox[{"x", ",", "y"}], "]"}], ",", 
+      RowBox[{"fy", "[", 
+       RowBox[{"x", ",", "y"}], "]"}]}], "}"}]}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"maggradf", "[", 
+     RowBox[{"x_", ",", "y_"}], "]"}], "=", 
+    RowBox[{"Sqrt", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"fx", "[", 
+        RowBox[{"x", ",", "y"}], "]"}], "*", 
+       RowBox[{"fx", "[", 
+        RowBox[{"x", ",", "y"}], "]"}]}], "+", 
+      RowBox[{
+       RowBox[{"fy", "[", 
+        RowBox[{"x", ",", "y"}], "]"}], "*", 
+       RowBox[{"fy", "[", 
+        RowBox[{"x", ",", "y"}], "]"}]}]}], "]"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.6229157854847307`*^9, 3.6229157864047318`*^9}, {
+  3.623089511986453*^9, 3.6230895190999637`*^9}, {3.694286651960229*^9, 
+  3.694286665235566*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"unit", " ", "vector"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"u", "[", "\[Theta]_", "]"}], "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Cos", "[", "\[Theta]", "]"}], ",", 
+     RowBox[{"Sin", "[", "\[Theta]", "]"}]}], "}"}], " "}]}]], "Input",
+ CellChangeTimes->{{3.622915932720939*^9, 3.622915943112954*^9}, {
+  3.62291802535497*^9, 3.6229180286309743`*^9}, {3.6942866906866846`*^9, 
+  3.6942867152687283`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"Cos", "[", "\[Theta]", "]"}], ",", 
+   RowBox[{"Sin", "[", "\[Theta]", "]"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.622915943687955*^9, 3.6229180292959757`*^9, 
+  3.6229180659730287`*^9, 3.622931107041941*^9, 3.622983592301897*^9, 
+  3.6229852560902414`*^9, 3.6229852913151035`*^9, 3.623086408409983*^9, 
+  3.6230868082840548`*^9, 3.6234283194457307`*^9, 3.623589460454589*^9, 
+  3.6244949269018345`*^9, 3.624588367684759*^9, 3.6356917243291755`*^9, 
+  3.694285745744981*^9, 3.694286715670372*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "parameters", " ", "needed", " ", "for", " ", "the", " ", 
+    "visualization"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"list", "=", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "y", ",", "z"}], "}"}]}], ";"}]}]], "Input",
+ CellChangeTimes->{{3.622931873704839*^9, 3.6229318765658436`*^9}, {
+  3.6942866989151564`*^9, 3.694286712416109*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"GraphicsGrid", "[", 
+    RowBox[{"{", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{"the", " ", "plot"}], "*)"}], "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"Show", "[", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"Plot3D", "[", 
+          RowBox[{
+           RowBox[{"f", "[", 
+            RowBox[{"x", ",", "y"}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", 
+             RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"y", ",", 
+             RowBox[{"-", "2"}], ",", "2"}], "}"}]}], "]"}], ",", 
+         RowBox[{"(*", "graph", "*)"}], "\[IndentingNewLine]", 
+         RowBox[{"Graphics3D", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"PointSize", "[", "0.03", "]"}], ",", "Red", ",", 
+            RowBox[{"Point", "[", 
+             RowBox[{"{", 
+              RowBox[{"a", ",", "b", ",", 
+               RowBox[{"f", "[", 
+                RowBox[{"a", ",", "b"}], "]"}]}], "}"}], "]"}]}], "}"}], 
+          "]"}], ",", 
+         RowBox[{"(*", "point", "*)"}], "\[IndentingNewLine]", 
+         RowBox[{"ParametricPlot3D", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"x", ",", "b", ",", 
+             RowBox[{"f", "[", 
+              RowBox[{"x", ",", "b"}], "]"}]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", 
+             RowBox[{"-", "3"}], ",", "3"}], "}"}]}], "]"}], ",", 
+         RowBox[{"(*", 
+          RowBox[{"slice", " ", "on", " ", "the", " ", "x"}], "*)"}], 
+         "\[IndentingNewLine]", "\t", 
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{"x", " ", "is", " ", "fixed"}], ",", " ", 
+           RowBox[{"y", " ", "is", " ", "variable"}]}], "*)"}], 
+         "\[IndentingNewLine]", 
+         RowBox[{"ParametricPlot3D", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"a", ",", "y", ",", 
+             RowBox[{"f", "[", 
+              RowBox[{"a", ",", "y"}], "]"}]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"y", ",", 
+             RowBox[{"-", "3"}], ",", "3"}], "}"}]}], "]"}], ",", 
+         RowBox[{"(*", 
+          RowBox[{"slice", " ", "on", " ", "the", " ", "y"}], "*)"}], 
+         "\[IndentingNewLine]", "\t", 
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{"y", " ", "is", " ", "fixed"}], ",", " ", 
+           RowBox[{"x", " ", "is", " ", "variable"}]}], "*)"}], 
+         "\[IndentingNewLine]", 
+         RowBox[{"Graphics3D", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Thickness", "[", ".02", "]"}], ",", "Blue", ",", 
+            RowBox[{"Line", "[", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"a", ",", "b", ",", 
+                 RowBox[{"f", "[", 
+                  RowBox[{"a", ",", "b"}], "]"}]}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"a", "+", 
+                  RowBox[{"Cos", "[", "\[Theta]", "]"}]}], ",", 
+                 RowBox[{"b", "+", 
+                  RowBox[{"Sin", "[", "\[Theta]", "]"}]}], ",", 
+                 RowBox[{
+                  RowBox[{"f", "[", 
+                   RowBox[{"a", ",", "b"}], "]"}], "+", 
+                  RowBox[{
+                   RowBox[{"Cos", "[", "\[Theta]", "]"}], "*", 
+                   RowBox[{"fx", "[", 
+                    RowBox[{"a", ",", "b"}], "]"}]}], "+", 
+                  RowBox[{
+                   RowBox[{"Sin", "[", "\[Theta]", "]"}], "*", 
+                   RowBox[{"fy", "[", 
+                    RowBox[{"a", ",", "b"}], "]"}]}]}]}], "}"}]}], "}"}], 
+             "]"}]}], "}"}], "]"}], ",", " ", 
+         RowBox[{"(*", 
+          RowBox[{"directional", " ", "derivative"}], "*)"}], 
+         "\[IndentingNewLine]", "\t", 
+         RowBox[{"(*", 
+          RowBox[{"**", "interpretation"}], "***)"}], "\[IndentingNewLine]", 
+         "\t", 
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{"the", " ", "rate", " ", "at", " ", "which", 
+            StyleBox[" ",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox[
+             RowBox[{
+             "z", " ", "is", " ", "changing", " ", "in", " ", "the", " ", 
+              "direction", " ", "of", " ", "the", " ", "unit", " ", "vector", 
+              " ", "which", " ", "changes", " ", "based", " ", "on", " ", 
+              "\[Theta]"}],
+             FontColor->GrayLevel[0.5]], 
+            StyleBox["\[IndentingNewLine]",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox["\t",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox["the",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox[" ",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox["slope",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox[" ",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox["of",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox[" ",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox["the",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox[" ",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox["tangent",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox[" ",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox["line",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox[" ",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox["that",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox[" ",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox["is",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox[" ",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox["parallel",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox[" ",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox["to",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox[" ",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox["the",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox[" ",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox["unit",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox[" ",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox["vector",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox[" ",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox["direction",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox[" ",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox["at",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox[" ",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox["a",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox[" ",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox["point",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox[" ",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox["on",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox[" ",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox["the",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox[" ",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox["curve",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox["\[IndentingNewLine]",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox["\t",
+             FontColor->GrayLevel[0.5]], 
+            StyleBox[
+             RowBox[{
+              RowBox[{
+              "change", " ", "in", " ", "z", " ", "is", " ", "the", " ", 
+               "dot", " ", "product"}], " ", "<", "fx"}],
+             FontColor->GrayLevel[0.5]]}], 
+           StyleBox[",",
+            FontColor->GrayLevel[0.5]], 
+           StyleBox[
+            RowBox[{
+             RowBox[{"fy", ">", 
+              RowBox[{".", "u"}]}], " ", "\[IndentingNewLine]", "\t", 
+             RowBox[{"the", " ", "directional", " ", 
+              RowBox[{"derivative", ":", " ", 
+               RowBox[{
+                RowBox[{"it", "'"}], "s", " ", "a", " ", "scalar", " ", 
+                "projection", " ", "of", " ", "gradient", " ", "vector", " ", 
+                "onto", " ", "u"}]}]}]}],
+            FontColor->GrayLevel[0.5]]}], "\[IndentingNewLine]", "\t", "*)"}],
+          "\[IndentingNewLine]", "\[IndentingNewLine]", "\t", 
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{"**", "math"}], " ", "explanation"}], "***)"}], 
+         "\[IndentingNewLine]", "\t", 
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{"a", " ", "+", " ", 
+            RowBox[{"dx", 
+             RowBox[{"(", 
+              RowBox[{"amount", " ", "change", " ", "in", " ", "x"}], 
+              ")"}]}]}], ",", " ", 
+           RowBox[{"b", " ", "+", " ", 
+            RowBox[{"dy", 
+             RowBox[{"(", 
+              RowBox[{"amount", " ", "change", " ", "in", " ", "y"}], 
+              ")"}]}]}], ",", " ", 
+           RowBox[{
+            RowBox[{"f", "[", 
+             RowBox[{"a", ",", "b"}], "]"}], " ", "+", " ", 
+            RowBox[{"dz", 
+             RowBox[{"(", 
+              RowBox[{
+              "total", " ", "differential", " ", "aka", " ", "amount", " ", 
+               "change", " ", "in", " ", "z"}], ")"}]}]}]}], 
+          "\[IndentingNewLine]", "\t", "*)"}], "\[IndentingNewLine]", 
+         RowBox[{"ContourPlot3D", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"fx", "[", 
+                RowBox[{"a", ",", "b"}], "]"}], ",", 
+               RowBox[{"fy", "[", 
+                RowBox[{"a", ",", "b"}], "]"}], ",", 
+               RowBox[{"-", "1"}]}], "}"}], ".", 
+             RowBox[{"(", 
+              RowBox[{"list", "-", 
+               RowBox[{"{", 
+                RowBox[{"a", ",", "b", ",", 
+                 RowBox[{"f", "[", 
+                  RowBox[{"a", ",", "b"}], "]"}]}], "}"}]}], ")"}]}], 
+            "\[Equal]", "0"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", 
+             RowBox[{"a", "-", "5"}], ",", 
+             RowBox[{"a", "+", "5"}]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"y", ",", 
+             RowBox[{"b", "-", "5"}], ",", 
+             RowBox[{"b", "+", "5"}]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"z", ",", 
+             RowBox[{
+              RowBox[{"f", "[", 
+               RowBox[{"a", ",", "b"}], "]"}], "-", "5"}], ",", 
+             RowBox[{
+              RowBox[{"f", "[", 
+               RowBox[{"a", ",", "b"}], "]"}], "+", "5"}]}], "}"}], ",", 
+           RowBox[{"Mesh", "\[Rule]", "False"}]}], "]"}], ",", 
+         RowBox[{"(*", 
+          RowBox[{"tangent", " ", "plane"}], "*)"}], "\[IndentingNewLine]", 
+         "\t", 
+         RowBox[{"(*", 
+          RowBox[{"**", "interpretation"}], "***)"}], "\[IndentingNewLine]", 
+         "\t", 
+         RowBox[{"(*", 
+          RowBox[{
+          "contains", " ", "the", " ", "two", " ", "partial", " ", 
+           "derivatives", "\[IndentingNewLine]", "\t", "linear", " ", 
+           RowBox[{"approximation", ":", 
+            RowBox[{
+             RowBox[{"line", " ", "::", " ", "tangent"}], " ", "plane", " ", 
+             "approximation"}], ":", "surface"}]}], "*)"}], 
+         "\[IndentingNewLine]", "\[IndentingNewLine]", "\t", 
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{"**", "math"}], " ", "explanation"}], "***)"}], 
+         "\[IndentingNewLine]", "\t", 
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{"normal", " ", 
+            RowBox[{"vector", ".", "position"}], " ", "vector"}], " ", 
+           "\[Equal]", " ", 
+           RowBox[{"0", "\[IndentingNewLine]", "\t", "normal", " ", 
+            RowBox[{"vector", ":", " ", 
+             RowBox[{
+             "basically", " ", "nx", " ", "cross", " ", "product", " ", "ny", 
+              "\[IndentingNewLine]", 
+              StyleBox["\t",
+               FontColor->GrayLevel[0.5]], 
+              RowBox[{
+               StyleBox[
+                RowBox[{
+                 RowBox[{"nx", " ", "is"}], " ", "<", "1"}],
+                FontColor->GrayLevel[0.5]], 
+               StyleBox[",",
+                FontColor->GrayLevel[0.5]], 
+               StyleBox["0",
+                FontColor->GrayLevel[0.5]], 
+               StyleBox[",",
+                FontColor->GrayLevel[0.5]], 
+               StyleBox[
+                RowBox[{"fx", ">", "  ", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    "slope", " ", "of", " ", "partial", " ", "derivative", 
+                    " ", "because", " ", "change", " ", "in", " ", "z", " ", 
+                    "versus", " ", "x", " ", "is", " ", "fx", " ", 
+                    "therefore", " ", 
+                    RowBox[{"it", "'"}], "s"}], " ", "<", "1"}], ",", "0", 
+                    ",", 
+                    RowBox[{"fx", ">"}]}], ")"}], "\[IndentingNewLine]", 
+                  StyleBox[
+                   RowBox[{" ", " "}]], "ny", " ", "is"}], " ", "<", "0"}],
+                FontColor->GrayLevel[0.5]], 
+               StyleBox[",",
+                FontColor->GrayLevel[0.5]], 
+               StyleBox["1",
+                FontColor->GrayLevel[0.5]], 
+               StyleBox[",",
+                FontColor->GrayLevel[0.5]], 
+               RowBox[{
+                RowBox[{
+                 StyleBox[
+                  RowBox[{"fy", ">", " ", 
+                   RowBox[{"(", 
+                    RowBox[{
+                    "same", " ", "as", " ", "above", " ", "but", " ", "in", 
+                    " ", "the", " ", "y"}], ")"}]}],
+                  FontColor->GrayLevel[0.5]], "\[IndentingNewLine]", "\t\t", 
+                 "cross", " ", "product", " ", "is"}], " ", "<", 
+                RowBox[{"-", "fx"}]}], ",", 
+               RowBox[{"-", "fy"}], ",", 
+               RowBox[{"1", ">"}]}]}]}]}]}], "\[IndentingNewLine]", "\t", 
+          "*)"}], "\[IndentingNewLine]", 
+         RowBox[{"ParametricPlot3D", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"a", "+", "t"}], ",", "b", ",", 
+             RowBox[{
+              RowBox[{"f", "[", 
+               RowBox[{"a", ",", "b"}], "]"}], "+", 
+              RowBox[{"t", "*", 
+               RowBox[{"fx", "[", 
+                RowBox[{"a", ",", "b"}], "]"}]}]}]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", 
+             RowBox[{"-", "3"}], ",", "3"}], "}"}], ",", 
+           RowBox[{"PlotStyle", "\[Rule]", 
+            RowBox[{"{", 
+             RowBox[{"Thick", ",", "Red"}], "}"}]}]}], "]"}], ",", 
+         RowBox[{"(*", 
+          RowBox[{
+          "partial", " ", "derivative", " ", "with", " ", "respect", " ", 
+           "to", " ", "x"}], "*)"}], "\[IndentingNewLine]", "\t", 
+         RowBox[{"(*", 
+          RowBox[{"**", "interpretation"}], "***)"}], "\[IndentingNewLine]", 
+         "\t", 
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{
+           "the", " ", "rate", " ", "at", " ", "which", " ", "z", " ", "is", 
+            " ", "changing", " ", "when", " ", "y", " ", "is", " ", "fixed", 
+            " ", "and", " ", "x", " ", "is", " ", "variable", " ", "in", " ", 
+            "the", " ", "unit", " ", "vector", " ", "i", " ", "direction", 
+            "\[IndentingNewLine]", "\t", "the", " ", "slope", " ", "of", " ", 
+            "the", " ", "tangent", " ", "line"}], ",", " ", 
+           RowBox[{"parallel", " ", "to", " ", "the", " ", "x", " ", "axis"}],
+            ",", " ", 
+           RowBox[{
+           "at", " ", "a", " ", "point", " ", "on", " ", "the", " ", 
+            "curve"}]}], "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]",
+          "\t", 
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{"**", "math"}], " ", "explanation"}], "***)"}], 
+         "\[IndentingNewLine]", "\t", 
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{
+           "x", " ", "changing", " ", "with", " ", "respect", " ", "to", " ", 
+            "t"}], ",", " ", 
+           RowBox[{"fixed", " ", "y", " ", "coordinate"}], ",", " ", 
+           RowBox[{
+            RowBox[{"z", " ", "+", " ", 
+             RowBox[{
+             "t", " ", "times", " ", "fx", " ", "which", " ", "is", " ", 
+              "basically", " ", "like", " ", "r", "*", "t"}]}], "=", "d"}]}], 
+          "*)"}], "\[IndentingNewLine]", 
+         RowBox[{"ParametricPlot3D", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"a", ",", 
+             RowBox[{"b", "+", "t"}], ",", 
+             RowBox[{
+              RowBox[{"f", "[", 
+               RowBox[{"a", ",", "b"}], "]"}], "+", 
+              RowBox[{"t", "*", 
+               RowBox[{"fy", "[", 
+                RowBox[{"a", ",", "b"}], "]"}]}]}]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", 
+             RowBox[{"-", "3"}], ",", "3"}], "}"}], ",", 
+           RowBox[{"PlotStyle", "\[Rule]", 
+            RowBox[{"{", 
+             RowBox[{"Thick", ",", "Red"}], "}"}]}]}], "]"}], ",", 
+         RowBox[{"(*", 
+          RowBox[{
+          "partial", " ", "derivative", " ", "with", " ", "respect", " ", 
+           "to", " ", "y"}], "*)"}], "\[IndentingNewLine]", "\t", 
+         RowBox[{"(*", 
+          RowBox[{"**", "interpretation"}], "***)"}], "\[IndentingNewLine]", 
+         "\t", 
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{
+           "the", " ", "rate", " ", "at", " ", "which", " ", "z", " ", "is", 
+            " ", "changing", " ", "when", " ", "x", " ", "is", " ", "fixed", 
+            " ", "and", " ", "y", " ", "is", " ", "variable", " ", "in", " ", 
+            "the", " ", "unit", " ", "vector", " ", "j", " ", "direction", 
+            "\[IndentingNewLine]", "\t", "the", " ", "slope", " ", "of", " ", 
+            "the", " ", "tangent", " ", "line"}], ",", " ", 
+           RowBox[{"parallel", " ", "to", " ", "the", " ", "y", " ", "axis"}],
+            ",", " ", 
+           RowBox[{
+           "at", " ", "a", " ", "point", " ", "on", " ", "the", " ", 
+            "curve"}]}], "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]",
+          "\t", 
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{"**", "math"}], " ", "explanation"}], "***)"}], 
+         "\[IndentingNewLine]", "\t", 
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{"fixed", " ", "x", " ", "coordinate"}], ",", " ", 
+           RowBox[{
+           "y", " ", "changing", " ", "with", " ", "respect", " ", "to", " ", 
+            "t"}], ",", " ", 
+           RowBox[{
+            RowBox[{"z", " ", "+", " ", 
+             RowBox[{
+             "t", " ", "times", " ", "fy", " ", "which", " ", "is", " ", 
+              "basically", " ", "like", " ", "r", "*", "t"}]}], "=", "d"}]}], 
+          "*)"}], "\[IndentingNewLine]", 
+         RowBox[{"Graphics3D", "[", 
+          RowBox[{"{", 
+           RowBox[{"Green", ",", 
+            RowBox[{"Thickness", "[", ".02", "]"}], ",", 
+            RowBox[{"Line", "[", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"a", ",", "b", ",", 
+                 RowBox[{"f", "[", 
+                  RowBox[{"a", ",", "b"}], "]"}]}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"a", "+", 
+                  RowBox[{
+                   RowBox[{"fx", "[", 
+                    RowBox[{"a", ",", "b"}], "]"}], "/", 
+                   RowBox[{"maggradf", "[", 
+                    RowBox[{"a", ",", "b"}], "]"}]}]}], ",", 
+                 RowBox[{"b", "+", 
+                  RowBox[{
+                   RowBox[{"fy", "[", 
+                    RowBox[{"a", ",", "b"}], "]"}], "/", 
+                   RowBox[{"maggradf", "[", 
+                    RowBox[{"a", ",", "b"}], "]"}]}]}], ",", 
+                 RowBox[{
+                  RowBox[{"f", "[", 
+                   RowBox[{"a", ",", "b"}], "]"}], "+", 
+                  RowBox[{"maggradf", "[", 
+                   RowBox[{"a", ",", "b"}], "]"}]}]}], "}"}]}], "}"}], 
+             "]"}]}], "}"}], "]"}]}], 
+        RowBox[{"(*", 
+         RowBox[{"gradient", " ", "unit", " ", "vector"}], "*)"}], 
+        "\[IndentingNewLine]", 
+        StyleBox["\t", "Input",
+         FontColor->GrayLevel[0.5]], 
+        StyleBox[
+         RowBox[{"(*", 
+          RowBox[{"**", 
+           StyleBox["interpretation", "Input",
+            FontColor->GrayLevel[0.5]]}], "***)"}], "Input",
+         FontColor->GrayLevel[0.5]], 
+        StyleBox["\[IndentingNewLine]", "Input",
+         FontColor->RGBColor[0.5, 0, 0.5]], 
+        StyleBox["\t", "Input",
+         FontColor->RGBColor[0.5, 0, 0.5]], 
+        StyleBox[
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{
+           "the", " ", "direction", " ", "of", " ", "the", " ", "maximum", 
+            " ", "change", " ", "of", " ", "the", " ", "directional", " ", 
+            "derivative", " ", 
+            RowBox[{"(", 
+             RowBox[{
+             "the", " ", "maximum", " ", "change", " ", "in", " ", "z"}], 
+             ")"}]}], "\[IndentingNewLine]", "\t", "the", " ", "magnitude", 
+           " ", "of", " ", "the", " ", "gradient", " ", "vector", " ", "is", 
+           " ", "the", " ", "maximum", " ", "value", " ", "of", " ", "the", 
+           " ", "directional", " ", "derivative"}], "*)"}], "Input",
+         FontColor->RGBColor[0.5, 0, 0.5]], 
+        StyleBox["\[IndentingNewLine]", "Input",
+         FontColor->RGBColor[0.5, 0, 0.5]], 
+        StyleBox["\[IndentingNewLine]", "Input",
+         FontColor->RGBColor[0.5, 0, 0.5]], 
+        StyleBox["\t", "Input",
+         FontColor->RGBColor[0.5, 0, 0.5]], 
+        StyleBox[
+         RowBox[{
+          StyleBox["(*",
+           FontColor->GrayLevel[0.5]], 
+          RowBox[{
+           RowBox[{
+            StyleBox[
+             RowBox[{
+              StyleBox["*",
+               FontColor->RGBColor[0.5, 0, 0.5]], 
+              StyleBox["*",
+               FontColor->GrayLevel[0.5]]}]], "math"}], " ", "explanation"}], 
+          StyleBox["***)",
+           FontColor->GrayLevel[0.5]]}], "Input"], 
+        StyleBox["\[IndentingNewLine]", "Input",
+         FontColor->RGBColor[0.5, 0, 0.5]], 
+        StyleBox["\t", "Input"], 
+        StyleBox[
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{"x", " ", "+", " ", 
+            RowBox[{"partial", " ", "x", " ", 
+             RowBox[{"(", 
+              RowBox[{"change", " ", "in", " ", "x"}], ")"}]}]}], ",", " ", 
+           RowBox[{"y", " ", "+", " ", 
+            RowBox[{"partial", " ", "y", " ", 
+             RowBox[{"(", 
+              RowBox[{"change", " ", "in", " ", "y"}], ")"}]}]}], ",", " ", 
+           RowBox[{"z", " ", "+", " ", 
+            RowBox[{"magnitude", " ", "of", " ", "gradient", " ", 
+             RowBox[{"(", 
+              RowBox[{"change", " ", "in", " ", "z"}], ")"}], 
+             "\[IndentingNewLine]", "\t", 
+             RowBox[{"it", "'"}], "s", " ", "a", " ", "unit", " ", "vector", 
+             " ", "because", " ", "you", " ", "are", " ", "normalizing", " ", 
+             "the", " ", "change"}]}], ",", " ", 
+           RowBox[{
+           "basically", " ", "you", " ", "need", " ", "to", " ", "know", " ", 
+            "the", " ", "change", " ", "in", " ", "z", " ", "in", " ", "the", 
+            " ", "unit", " ", "vector", " ", "direction"}]}], 
+          "\[IndentingNewLine]", "\t", "*)"}], "Input",
+         FontColor->RGBColor[0.5, 0, 0.5]], "\[IndentingNewLine]", "]"}], 
+       "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{"the", " ", "contour", " ", "plot"}], "*)"}], 
+      "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{
+       "interpretations", " ", "and", " ", "math", " ", "explanations", " ", 
+        "are", " ", "basically", " ", "the", " ", "same", " ", "as", " ", 
+        "stuff", " ", "from", " ", "above", " ", "except", " ", "only", " ", 
+        "in", " ", "2", " ", "dimensions"}], "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"Show", "[", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"ContourPlot", "[", 
+          RowBox[{
+           RowBox[{"f", "[", 
+            RowBox[{"x", ",", "y"}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", 
+             RowBox[{"-", "3"}], ",", "3"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"y", ",", 
+             RowBox[{"-", "3"}], ",", "3"}], "}"}]}], "]"}], ",", 
+         RowBox[{"(*", "graph", "*)"}], "\[IndentingNewLine]", 
+         RowBox[{"Graphics", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"PointSize", "[", "0.03", "]"}], ",", "Red", ",", 
+            RowBox[{"Point", "[", 
+             RowBox[{"{", 
+              RowBox[{"a", ",", "b"}], "}"}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"(*", "point", "*)"}], "\[IndentingNewLine]", 
+         RowBox[{"Graphics", "[", 
+          RowBox[{"{", 
+           RowBox[{"Blue", ",", 
+            RowBox[{"Arrow", "[", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"a", ",", "b"}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"a", "+", 
+                  RowBox[{"Cos", "[", "\[Theta]", "]"}]}], ",", 
+                 RowBox[{"b", "+", 
+                  RowBox[{"Sin", "[", "\[Theta]", "]"}]}]}], "}"}]}], "}"}], 
+             "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"(*", 
+          RowBox[{"directional", " ", "derivative"}], "*)"}], 
+         "\[IndentingNewLine]", 
+         RowBox[{"Graphics", "[", 
+          RowBox[{"{", 
+           RowBox[{"Green", ",", 
+            RowBox[{"Arrow", "[", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"a", ",", "b"}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"a", "+", 
+                  RowBox[{
+                   RowBox[{"fx", "[", 
+                    RowBox[{"a", ",", "b"}], "]"}], "/", 
+                   RowBox[{"maggradf", "[", 
+                    RowBox[{"a", ",", "b"}], "]"}]}]}], ",", 
+                 RowBox[{"b", "+", 
+                  RowBox[{
+                   RowBox[{"fy", "[", 
+                    RowBox[{"a", ",", "b"}], "]"}], "/", 
+                   RowBox[{"maggradf", "[", 
+                    RowBox[{"a", ",", "b"}], "]"}]}]}]}], "}"}]}], "}"}], 
+             "]"}]}], "}"}], "]"}]}], 
+        RowBox[{"(*", 
+         RowBox[{"gradient", " ", "unit", " ", "vector"}], "*)"}], 
+        "\[IndentingNewLine]", "]"}], "}"}]}], "\[IndentingNewLine]", "}"}], 
+    "]"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", 
+     RowBox[{"-", "3"}], ",", "3"}], "}"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", 
+     RowBox[{"-", "3"}], ",", "3"}], "}"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"\[Theta]", ",", 
+     RowBox[{
+      RowBox[{"-", "2"}], "Pi"}], ",", 
+     RowBox[{"2", "Pi"}]}], "}"}]}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.6213600487462993`*^9, 3.621360111841908*^9}, {
+   3.621360153281278*^9, 3.6213601948126535`*^9}, {3.621360242316371*^9, 
+   3.6213602956914234`*^9}, {3.621360355282832*^9, 3.6213604023775253`*^9}, {
+   3.621360507563542*^9, 3.621360529240782*^9}, {3.62136057815958*^9, 
+   3.621360635556863*^9}, {3.6213607458681726`*^9, 3.6213608327641425`*^9}, {
+   3.621385338237631*^9, 3.62138534876045*^9}, {3.6213875990816355`*^9, 
+   3.621387642299107*^9}, {3.6214533823092976`*^9, 3.6214533974881244`*^9}, {
+   3.6216182184143763`*^9, 3.621618227197191*^9}, {3.621618925637169*^9, 
+   3.6216189969843636`*^9}, {3.6216190306954107`*^9, 3.62161904415243*^9}, {
+   3.6216190953985023`*^9, 3.6216190998945084`*^9}, {3.62161916123391*^9, 
+   3.6216192152097273`*^9}, {3.622916189678303*^9, 3.622916381422578*^9}, {
+   3.622916729878071*^9, 3.6229167787121396`*^9}, {3.622916826281707*^9, 
+   3.6229168684002666`*^9}, {3.622916932977858*^9, 3.6229169619448986`*^9}, {
+   3.62291701955898*^9, 3.622917029085994*^9}, {3.622917074095557*^9, 
+   3.6229170820225687`*^9}, {3.622917130186137*^9, 3.622917166740189*^9}, {
+   3.622917390829507*^9, 3.6229174422610807`*^9}, {3.6229175430807233`*^9, 
+   3.6229175433707237`*^9}, {3.6229176265378866`*^9, 
+   3.6229176296578903`*^9}, {3.6229177685155897`*^9, 
+   3.6229178212961655`*^9}, {3.6229179480383563`*^9, 3.62291795067936*^9}, {
+   3.6229180344119825`*^9, 3.6229180385869884`*^9}, {3.6229181428541403`*^9, 
+   3.622918273809828*^9}, {3.622918353677946*^9, 3.622918354752948*^9}, {
+   3.622931124778968*^9, 3.6229311272989717`*^9}, {3.6229313021462355`*^9, 
+   3.622931377921343*^9}, {3.6229314120463934`*^9, 3.622931501738966*^9}, {
+   3.622931836319786*^9, 3.622931837384788*^9}, {3.6229318852908554`*^9, 
+   3.6229319430419397`*^9}, {3.622984001147415*^9, 3.6229840622839227`*^9}, {
+   3.6229841409392605`*^9, 3.622984147896873*^9}, {3.6229841795805283`*^9, 
+   3.622984183745736*^9}, {3.62298426589548*^9, 3.6229843246451836`*^9}, {
+   3.622984394002905*^9, 3.622984495839884*^9}, 3.6229845528423843`*^9, {
+   3.6229846132768908`*^9, 3.622984681075331*^9}, {3.6229847273450127`*^9, 
+   3.622984746023246*^9}, {3.622984884036688*^9, 3.6229849351891775`*^9}, {
+   3.622985135220229*^9, 3.6229851394634366`*^9}, {3.622985384930868*^9, 
+   3.6229854004684954`*^9}, {3.6229859461730537`*^9, 3.622985960603079*^9}, {
+   3.62298600117875*^9, 3.6229860084015627`*^9}, {3.6229861118609447`*^9, 
+   3.6229861295357757`*^9}, {3.6229861705794477`*^9, 
+   3.6229862785628376`*^9}, {3.6229863344265356`*^9, 
+   3.6229864039714575`*^9}, {3.622986461036358*^9, 3.6229865671552444`*^9}, {
+   3.622986611793723*^9, 3.622986619890137*^9}, 3.623086728594942*^9, {
+   3.6230868289225836`*^9, 3.6230869221047153`*^9}, {3.623086959936269*^9, 
+   3.6230870522178993`*^9}, {3.623087191226095*^9, 3.6230872526521826`*^9}, {
+   3.6230873228857813`*^9, 3.6230873930003805`*^9}, {3.6230874292494316`*^9, 
+   3.6230875172930555`*^9}, {3.6230877761312885`*^9, 3.623087893080978*^9}, {
+   3.623087938593552*^9, 3.6230879487410693`*^9}, {3.623087994154643*^9, 
+   3.6230879993331504`*^9}, {3.623088050782734*^9, 3.623088051027734*^9}, {
+   3.6230881238309827`*^9, 3.623088165214548*^9}, {3.6230881969320993`*^9, 
+   3.623088226453147*^9}, {3.6230886247502804`*^9, 3.623088673829858*^9}, {
+   3.6230889214367504`*^9, 3.623088973935333*^9}, {3.623089042042939*^9, 
+   3.623089141959096*^9}, {3.6230894713738747`*^9, 3.623089476028882*^9}, {
+   3.6230895401259975`*^9, 3.623089551084515*^9}, {3.6230899068799715`*^9, 
+   3.623089998889618*^9}, {3.6230901221284666`*^9, 3.6230901266009755`*^9}, {
+   3.6230901740030584`*^9, 3.6230901770805635`*^9}, {3.6230922241672025`*^9, 
+   3.623092224569703*^9}, {3.623092289505027*^9, 3.623092299428645*^9}, {
+   3.623092390755953*^9, 3.6230924326715326`*^9}, {3.623092487798338*^9, 
+   3.6230924957357526`*^9}, 3.623092745253236*^9, 3.623092847116829*^9, {
+   3.6234274939894805`*^9, 3.623427535579153*^9}, {3.6234275686210117`*^9, 
+   3.6234275831758375`*^9}, {3.6234276158110943`*^9, 3.623427641285939*^9}, {
+   3.623427678242404*^9, 3.623427689692824*^9}, {3.623427738052909*^9, 
+   3.6234278325346756`*^9}, {3.6234279369622593`*^9, 
+   3.6234279598786993`*^9}, {3.623427995087961*^9, 3.623428025836615*^9}, {
+   3.6234282943286867`*^9, 3.623428304142104*^9}, {3.6234284770840073`*^9, 
+   3.623428610901043*^9}, {3.623428715963482*^9, 3.623428790672013*^9}, {
+   3.6234288623697386`*^9, 3.6234289186078377`*^9}, {3.6234291096769733`*^9, 
+   3.623429122172595*^9}, {3.623429164386269*^9, 3.6234293017781105`*^9}, {
+   3.6234293728674355`*^9, 3.62342939267947*^9}, {3.62342951201968*^9, 
+   3.6234295419873323`*^9}, {3.623429687041552*^9, 3.6234297209404116`*^9}, {
+   3.6234297853841248`*^9, 3.6234298768158855`*^9}, {3.6234299264395723`*^9, 
+   3.6234301204727135`*^9}, {3.623589849270672*^9, 3.6235898607522917`*^9}, {
+   3.623589918722994*^9, 3.623589918910194*^9}, {3.623589954181856*^9, 
+   3.623589988205516*^9}, {3.6235901452509913`*^9, 3.6235901913490725`*^9}, {
+   3.6942867691128645`*^9, 3.694286770937295*^9}, 3.6942868755247755`*^9}]
+}, Open  ]]
+},
+WindowSize->{1600, 817},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+PrivateNotebookOptions->{"VersionedStylesheet"->{"Default.nb"[8.] -> False}},
+FrontEndVersion->"10.2 for Microsoft Windows (64-bit) (July 29, 2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 359, 7, 49, "Text"],
+Cell[919, 29, 498, 13, 31, "Input"],
+Cell[1420, 44, 749, 24, 72, "Input"],
+Cell[2172, 70, 1116, 33, 72, "Input"],
+Cell[CellGroupData[{
+Cell[3313, 107, 487, 12, 52, "Input"],
+Cell[3803, 121, 552, 10, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4392, 136, 410, 11, 52, "Input"],
+Cell[4805, 149, 32503, 734, 1412, "Input"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
